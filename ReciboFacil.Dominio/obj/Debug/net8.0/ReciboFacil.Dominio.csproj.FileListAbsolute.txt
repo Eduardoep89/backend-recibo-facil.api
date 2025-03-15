@@ -1,0 +1,11 @@
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Dominio\bin\Debug\net8.0\ReciboFacil.Dominio.deps.json
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Dominio\bin\Debug\net8.0\ReciboFacil.Dominio.dll
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Dominio\bin\Debug\net8.0\ReciboFacil.Dominio.pdb
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Dominio\obj\Debug\net8.0\ReciboFacil.Dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Dominio\obj\Debug\net8.0\ReciboFacil.Dominio.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Dominio\obj\Debug\net8.0\ReciboFacil.Dominio.AssemblyInfo.cs
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Dominio\obj\Debug\net8.0\ReciboFacil.Dominio.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Dominio\obj\Debug\net8.0\ReciboFacil.Dominio.dll
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Dominio\obj\Debug\net8.0\refint\ReciboFacil.Dominio.dll
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Dominio\obj\Debug\net8.0\ReciboFacil.Dominio.pdb
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Dominio\obj\Debug\net8.0\ref\ReciboFacil.Dominio.dll
