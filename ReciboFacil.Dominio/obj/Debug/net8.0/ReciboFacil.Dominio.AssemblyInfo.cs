@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReciboFacil.Dominio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4cd05250b660d605beada4f5cfd43f371717d28")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReciboFacil.Dominio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReciboFacil.Dominio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

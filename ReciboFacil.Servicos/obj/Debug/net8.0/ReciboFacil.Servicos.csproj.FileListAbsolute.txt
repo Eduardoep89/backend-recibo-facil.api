@@ -15,3 +15,4 @@ C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Servicos\obj\Debug\net
 C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Servicos\obj\Debug\net8.0\refint\ReciboFacil.Servicos.dll
 C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Servicos\obj\Debug\net8.0\ReciboFacil.Servicos.pdb
 C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Servicos\obj\Debug\net8.0\ref\ReciboFacil.Servicos.dll
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Servicos\obj\Debug\net8.0\ReciboFacil.Servicos.sourcelink.json

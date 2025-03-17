@@ -17,3 +17,4 @@ C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Aplicacao\obj\Debug\ne
 C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Aplicacao\obj\Debug\net8.0\refint\ReciboFacil.Aplicacao.dll
 C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Aplicacao\obj\Debug\net8.0\ReciboFacil.Aplicacao.pdb
 C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Aplicacao\obj\Debug\net8.0\ref\ReciboFacil.Aplicacao.dll
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Aplicacao\obj\Debug\net8.0\ReciboFacil.Aplicacao.sourcelink.json

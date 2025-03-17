@@ -20,6 +20,20 @@ builder.Services.AddScoped<IProdutoAplicacao, ProdutoAplicacao>();
 builder.Services.AddScoped<IReciboAplicacao, ReciboAplicacao>();
 builder.Services.AddScoped<IItemReciboAplicacao, ItemReciboAplicacao>();
 
+builder.Services.AddCors(options =>
+    {
+        options.AddDefaultPolicy(builder =>
+            {
+                builder.WithOrigins("http://localhost:3000")
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            }
+        );
+    }
+);
+
+
 // Adiciona suporte a controllers
 builder.Services.AddControllers();
 
@@ -35,6 +49,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

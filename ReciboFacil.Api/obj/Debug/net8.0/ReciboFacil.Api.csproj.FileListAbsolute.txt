@@ -155,3 +155,4 @@ C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Api\bin\Debug\net8.0\S
 C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Api\bin\Debug\net8.0\System.Text.Encodings.Web.dll
 C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Api\bin\Debug\net8.0\System.Text.Json.dll
 C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Api\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Users\User\Desktop\ReciboFacil\ReciboFacil\ReciboFacil.Api\obj\Debug\net8.0\ReciboFacil.Api.sourcelink.json
