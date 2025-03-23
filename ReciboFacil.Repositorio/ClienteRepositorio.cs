@@ -8,7 +8,7 @@ namespace ReciboFacil.Repositorio
 {
     public class ClienteRepositorio : BaseRepositorio, IClienteRepositorio
     {
-            public ClienteRepositorio(ReciboFacilContexto contexto) : base(contexto)
+        public ClienteRepositorio(ReciboFacilContexto contexto) : base(contexto)
         {
         }
 
@@ -59,10 +59,10 @@ namespace ReciboFacil.Repositorio
             }
         }
         public async Task<List<Cliente>> ListarTop10ClientesAsync()
-{
-    return await _contexto.Clientes
-        .FromSqlRaw("EXEC ListarTop10Clientes")  // Chama a stored procedure
-        .ToListAsync();
-}
+        {
+            return await _contexto.Clientes
+                .FromSqlRaw("EXEC ListarTop10Clientes")  // Chama a stored procedure
+                .ToListAsync();
+        }
     }
 }
