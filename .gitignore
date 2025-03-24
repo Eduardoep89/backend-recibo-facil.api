@@ -1,0 +1,25 @@
+## Arquivos de build do .NET ##
+[Bb]in/
+[Oo]bj/
+*.dll
+*.pdb
+*.exe
+*.cache
+*.json
+*.user
+*.suo
+*.userosscache
+
+## Arquivos específicos do obj ##
+**/obj/**/*
+!**/obj/Debug/net8.0/.gitkeep
+
+## VS e diretórios de IDE ##
+.vs/
+.vscode/
+.idea/
+
+## Outros ##
+*.log
+*.tmp
+*.temp
