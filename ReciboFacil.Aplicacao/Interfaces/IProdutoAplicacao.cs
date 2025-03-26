@@ -12,8 +12,8 @@ namespace ReciboFacil.Aplicacao
         Task DeletarAsync(int produtoId);
         Task<IEnumerable<Produto>> ListarAsync(bool ativo = true);
         Task<IEnumerable<Produto>> ListarProdutosPorClienteIdAsync(int clienteId);
-        Task<Produto> ObterPorIdAsync(int id); 
-         Task<List<Produto>> ListarTop10ProdutosAsync();
-         Task<List<ProdutoPorCliente>> ListarProdutosPorClienteAsync(int clienteId);
+        Task<Produto> ObterPorIdAsync(int id);
+        Task<List<Produto>> ListarTop10ProdutosAsync();
+        Task<List<ProdutoPorCliente>> ListarProdutosPorClienteAsync(int clienteId);
     }
 }

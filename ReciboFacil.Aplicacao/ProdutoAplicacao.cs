@@ -43,39 +43,38 @@ namespace ReciboFacil.Aplicacao
 
         public async Task DeletarAsync(int produtoId)
         {
-           var produto = await _produtoRepositorio.ObterPorIdAsync(produtoId);
+            var produto = await _produtoRepositorio.ObterPorIdAsync(produtoId);
 
-        if (produto == null)
-        {
-            throw new Exception("Produto não encontrado.");
-        }
+            if (produto == null)
+            {
+                throw new Exception("Produto não encontrado.");
+            }
 
-        produto.Deletar(); // Marca o produto como inativo (soft delete)
-        await _produtoRepositorio.AtualizarAsync(produto); // Atualiza o produto no banco de dados
+            produto.Deletar(); // Marca o produto como inativo (soft delete)
+            await _produtoRepositorio.AtualizarAsync(produto); // Atualiza o produto no banco de dados
         }
 
         public async Task<Produto> ObterPorIdAsync(int id)
-    {
-        return await _produtoRepositorio.ObterPorIdAsync(id);
-    }
+        {
+            return await _produtoRepositorio.ObterPorIdAsync(id);
+        }
 
-      public async Task<IEnumerable<Produto>> ListarAsync(bool ativo = true)
-{
-    return await _produtoRepositorio.ListarAsync(ativo);
-}
+        public async Task<IEnumerable<Produto>> ListarAsync(bool ativo = true)
+        {
+            return await _produtoRepositorio.ListarAsync(ativo);
+        }
 
         public async Task<IEnumerable<Produto>> ListarProdutosPorClienteIdAsync(int clienteId)
         {
             return await _produtoRepositorio.ListarProdutosPorClienteIdAsync(clienteId);
         }
         public async Task<List<Produto>> ListarTop10ProdutosAsync()
-{
-    return await _produtoRepositorio.ListarTop10ProdutosAsync();
-}
-public async Task<List<ProdutoPorCliente>> ListarProdutosPorClienteAsync(int clienteId)
-{
-    return await _produtoRepositorio.ListarProdutosPorClienteAsync(clienteId);
-}
-
+        {
+            return await _produtoRepositorio.ListarTop10ProdutosAsync();
+        }
+        public async Task<List<ProdutoPorCliente>> ListarProdutosPorClienteAsync(int clienteId)
+        {
+            return await _produtoRepositorio.ListarProdutosPorClienteAsync(clienteId);
+        }
     }
 }

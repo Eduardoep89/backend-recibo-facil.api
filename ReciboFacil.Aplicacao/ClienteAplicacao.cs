@@ -77,8 +77,8 @@ namespace ReciboFacil.Aplicacao
             return await _clienteRepositorio.ListarAsync(ativo);
         }
         public async Task<List<Cliente>> ListarTop10ClientesAsync()
-{
-    return await _clienteRepositorio.ListarTop10ClientesAsync();
-}
+        {
+            return await _clienteRepositorio.ListarTop10ClientesAsync();
+        }
     }
 }

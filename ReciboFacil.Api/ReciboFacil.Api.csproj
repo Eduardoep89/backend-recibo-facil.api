@@ -7,13 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Pacotes do ASP.NET Core -->
+    <PackageReference Include="Azure.AI.OpenAI" Version="1.0.0-beta.12" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.12" />
+    
+    <!-- Entity Framework Core -->
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    
+    <!-- Extensões -->
+    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="9.0.3" />
+    
+    <!-- Swagger -->
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
@@ -21,6 +32,7 @@
     <ProjectReference Include="..\ReciboFacil.Aplicacao\ReciboFacil.Aplicacao.csproj" />
     <ProjectReference Include="..\ReciboFacil.Dominio\ReciboFacil.Dominio.csproj" />
     <ProjectReference Include="..\ReciboFacil.Repositorio\ReciboFacil.Repositorio.csproj" />
+    <ProjectReference Include="..\ReciboFacil.Servicos\ReciboFacil.Servicos.csproj" />
   </ItemGroup>
 
 </Project>

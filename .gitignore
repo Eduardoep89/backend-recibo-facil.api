@@ -23,3 +23,8 @@
 *.log
 *.tmp
 *.temp
+
+
+# IA #
+Properties/launchSettings.json
+appsettings*.json

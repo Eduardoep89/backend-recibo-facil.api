@@ -13,6 +13,6 @@ namespace ReciboFacil.Aplicacao
         Task RestaurarAsync(int clienteId);
         Task<Cliente> ObterPorIdAsync(int clienteId);
         Task<IEnumerable<Cliente>> ListarAsync(bool ativo);
-         Task<List<Cliente>> ListarTop10ClientesAsync();
+        Task<List<Cliente>> ListarTop10ClientesAsync();
     }
 }
