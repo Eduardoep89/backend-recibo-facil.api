@@ -113,57 +113,57 @@ namespace ReciboFacil.Api.Controllers
             }
         }
 
-       [HttpGet("Listar")]
-public async Task<ActionResult<IEnumerable<ProdutoResposta>>> ListarAsync([FromQuery] bool ativo = true)
-{
-    try
-    {
-        var produtos = await _produtoAplicacao.ListarAsync(ativo);
-
-        var resposta = produtos.Select(produto => new ProdutoResposta
+        [HttpGet("Listar")]
+        public async Task<ActionResult<IEnumerable<ProdutoResposta>>> ListarAsync([FromQuery] bool ativo = true)
         {
-            Id = produto.Id,
-            Nome = produto.Nome,
-            Marca = produto.Marca,
-            Modelo = produto.Modelo,
-            Preco = produto.Preco,
-            Ativo = produto.Ativo,
-            ClienteId = produto.ClienteId
-        }).ToList();
+            try
+            {
+                var produtos = await _produtoAplicacao.ListarAsync(ativo);
 
-        return Ok(resposta);
-    }
-    catch (Exception ex)
-    {
-        return BadRequest(ex.Message);
-    }
-}
-[HttpGet("ListarTop10")]
-public async Task<ActionResult<IEnumerable<ProdutoResposta>>> ListarTop10ProdutosAsync()
-{
-    try
-    {
-        var produtos = await _produtoAplicacao.ListarTop10ProdutosAsync();
+                var resposta = produtos.Select(produto => new ProdutoResposta
+                {
+                    Id = produto.Id,
+                    Nome = produto.Nome,
+                    Marca = produto.Marca,
+                    Modelo = produto.Modelo,
+                    Preco = produto.Preco,
+                    Ativo = produto.Ativo,
+                    ClienteId = produto.ClienteId
+                }).ToList();
 
-        var resposta = produtos.Select(produto => new ProdutoResposta
+                return Ok(resposta);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("ListarTop10")]
+        public async Task<ActionResult<IEnumerable<ProdutoResposta>>> ListarTop10ProdutosAsync()
         {
-            Id = produto.Id,
-            Nome = produto.Nome,
-            Marca = produto.Marca,
-            Modelo = produto.Modelo,
-            Preco = produto.Preco,
-            Ativo = produto.Ativo,
-            ClienteId = produto.ClienteId
-        }).ToList();
+            try
+            {
+                var produtos = await _produtoAplicacao.ListarTop10ProdutosAsync();
 
-        return Ok(resposta);
-    }
-    catch (Exception ex)
-    {
-        return BadRequest(ex.Message);
-    }
-}
-  [HttpGet("ListarPorCliente/{clienteId}")]
+                var resposta = produtos.Select(produto => new ProdutoResposta
+                {
+                    Id = produto.Id,
+                    Nome = produto.Nome,
+                    Marca = produto.Marca,
+                    Modelo = produto.Modelo,
+                    Preco = produto.Preco,
+                    Ativo = produto.Ativo,
+                    ClienteId = produto.ClienteId
+                }).ToList();
+
+                return Ok(resposta);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("ListarPorCliente/{clienteId}")]
         public async Task<ActionResult<IEnumerable<ProdutoPorCliente>>> ListarProdutosPorClienteAsync([FromRoute] int clienteId)
         {
             try

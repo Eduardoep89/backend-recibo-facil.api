@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 
 namespace ReciboFacil.Servicos.Interfaces
@@ -7,6 +8,5 @@ namespace ReciboFacil.Servicos.Interfaces
         Task<string> GerarRelatorioAnaliticoAsync();
         Task<string> GerarSugestoesProdutosAsync(int clienteId);
         Task<string> GerarRelatorioPersonalizadoAsync(string promptPersonalizado);
-        // Azure.AI.OpenAI
     }
 }
