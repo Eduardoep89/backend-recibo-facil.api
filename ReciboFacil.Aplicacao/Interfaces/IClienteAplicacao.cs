@@ -14,5 +14,8 @@ namespace ReciboFacil.Aplicacao
         Task<Cliente> ObterPorIdAsync(int clienteId);
         Task<IEnumerable<Cliente>> ListarAsync(bool ativo);
         Task<List<Cliente>> ListarTop10ClientesAsync();
+        Task<(List<Cliente> clientes, int totalRegistros, int totalPaginas)> ListarPaginadoAsync(
+    int pagina = 1,
+    int itensPorPagina = 10);
     }
 }

@@ -1,4 +1,5 @@
 using ReciboFacil.Dominio.Entidades;
+using ReciboFacil.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -79,6 +80,12 @@ namespace ReciboFacil.Aplicacao
         public async Task<List<Cliente>> ListarTop10ClientesAsync()
         {
             return await _clienteRepositorio.ListarTop10ClientesAsync();
+        }
+        public async Task<(List<Cliente> clientes, int totalRegistros, int totalPaginas)> ListarPaginadoAsync(
+    int pagina = 1,
+    int itensPorPagina = 10)
+        {
+            return await _clienteRepositorio.ListarPaginadoAsync(pagina, itensPorPagina);
         }
     }
 }

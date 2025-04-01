@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ReciboFacil.Api.Models.PagedResult;
 
 namespace ReciboFacil.Api.Controllers
 {
@@ -102,71 +103,105 @@ namespace ReciboFacil.Api.Controllers
             }
         }
         [HttpDelete("Deletar/{clienteId}")]
-public async Task<ActionResult> DeletarAsync([FromRoute] int clienteId)
-{
-    try
-    {
-        await _clienteAplicacao.DeletarAsync(clienteId);
-        return Ok();
-    }
-    catch (Exception ex)
-    {
-        return BadRequest(ex.Message);
-    }
-}
-[HttpGet("Listar")]
-public async Task<ActionResult<IEnumerable<ClienteResposta>>> ListarAsync([FromQuery] bool ativo = true)
-{
-    try
-    {
-        var clientes = await _clienteAplicacao.ListarAsync(ativo);
-
-        var resposta = clientes.Select(cliente => new ClienteResposta
+        public async Task<ActionResult> DeletarAsync([FromRoute] int clienteId)
         {
-            Id = cliente.Id,
-            Nome = cliente.Nome,
-            Endereco = cliente.Endereco,
-            Bairro = cliente.Bairro,
-            Cidade = cliente.Cidade,
-            Telefone = cliente.Telefone,
-            CnpjCpf = cliente.CnpjCpf,
-            Ativo = cliente.Ativo
-        }).ToList();
-
-        return Ok(resposta);
-    }
-    catch (Exception ex)
-    {
-        return BadRequest(ex.Message);
-    }
-}
-[HttpGet("ListarTop10")]
-public async Task<ActionResult<IEnumerable<ClienteResposta>>> ListarTop10ClientesAsync()
-{
-    try
-    {
-        var clientes = await _clienteAplicacao.ListarTop10ClientesAsync();
-
-        var resposta = clientes.Select(cliente => new ClienteResposta
+            try
+            {
+                await _clienteAplicacao.DeletarAsync(clienteId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("Listar")]
+        public async Task<ActionResult<IEnumerable<ClienteResposta>>> ListarAsync([FromQuery] bool ativo = true)
         {
-            Id = cliente.Id,
-            Nome = cliente.Nome,
-            Endereco = cliente.Endereco,
-            Bairro = cliente.Bairro,
-            Cidade = cliente.Cidade,
-            Telefone = cliente.Telefone,
-            CnpjCpf = cliente.CnpjCpf,
-            Ativo = cliente.Ativo
-        }).ToList();
+            try
+            {
+                var clientes = await _clienteAplicacao.ListarAsync(ativo);
 
-        return Ok(resposta);
-    }
-    catch (Exception ex)
-    {
-        return BadRequest(ex.Message);
-    }
-}
+                var resposta = clientes.Select(cliente => new ClienteResposta
+                {
+                    Id = cliente.Id,
+                    Nome = cliente.Nome,
+                    Endereco = cliente.Endereco,
+                    Bairro = cliente.Bairro,
+                    Cidade = cliente.Cidade,
+                    Telefone = cliente.Telefone,
+                    CnpjCpf = cliente.CnpjCpf,
+                    Ativo = cliente.Ativo
+                }).ToList();
 
-        // Outros métodos...
+                return Ok(resposta);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("ListarTop10")]
+        public async Task<ActionResult<IEnumerable<ClienteResposta>>> ListarTop10ClientesAsync()
+        {
+            try
+            {
+                var clientes = await _clienteAplicacao.ListarTop10ClientesAsync();
+
+                var resposta = clientes.Select(cliente => new ClienteResposta
+                {
+                    Id = cliente.Id,
+                    Nome = cliente.Nome,
+                    Endereco = cliente.Endereco,
+                    Bairro = cliente.Bairro,
+                    Cidade = cliente.Cidade,
+                    Telefone = cliente.Telefone,
+                    CnpjCpf = cliente.CnpjCpf,
+                    Ativo = cliente.Ativo
+                }).ToList();
+
+                return Ok(resposta);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpGet("ListarPaginado")]
+        public async Task<ActionResult<PagedResult<ClienteResposta>>> ListarPaginadoAsync(
+                   [FromQuery] int pagina = 1,
+                   [FromQuery] int itensPorPagina = 10)
+        {
+            try
+            {
+                var (clientes, totalRegistros, totalPaginas) = await _clienteAplicacao.ListarPaginadoAsync(pagina, itensPorPagina);
+
+                var resposta = clientes.Select(cliente => new ClienteResposta
+                {
+                    Id = cliente.Id,
+                    Nome = cliente.Nome,
+                    Endereco = cliente.Endereco,
+                    Bairro = cliente.Bairro,
+                    Cidade = cliente.Cidade,
+                    Telefone = cliente.Telefone,
+                    CnpjCpf = cliente.CnpjCpf,
+                    Ativo = cliente.Ativo
+                }).ToList();
+
+                return Ok(new PagedResult<ClienteResposta>
+                {
+                    PaginaAtual = pagina,
+                    ItensPorPagina = itensPorPagina,
+                    TotalRegistros = totalRegistros,
+                    TotalPaginas = totalPaginas,
+                    Itens = resposta
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
+
 }

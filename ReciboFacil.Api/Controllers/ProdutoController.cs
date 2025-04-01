@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ReciboFacil.Api.Models.PagedResult;
 
 namespace ReciboFacil.Api.Controllers
 {
@@ -176,5 +177,41 @@ namespace ReciboFacil.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("ListarPaginado")]
+        public async Task<ActionResult<PagedResult<ProdutoResposta>>> ListarPaginadoAsync(
+         [FromQuery] int pagina = 1,
+         [FromQuery] int itensPorPagina = 10)
+        {
+            try
+            {
+                var (produtos, totalRegistros, totalPaginas) = await _produtoAplicacao.ListarPaginadoAsync(pagina, itensPorPagina);
+
+                var resposta = produtos.Select(produto => new ProdutoResposta
+                {
+                    Id = produto.Id,
+                    Nome = produto.Nome,
+                    Marca = produto.Marca,
+                    Modelo = produto.Modelo,
+                    Preco = produto.Preco,
+                    Ativo = produto.Ativo,
+                    ClienteId = produto.ClienteId
+                }).ToList();
+
+                return Ok(new PagedResult<ProdutoResposta>
+                {
+                    PaginaAtual = pagina,
+                    ItensPorPagina = itensPorPagina,
+                    TotalRegistros = totalRegistros,
+                    TotalPaginas = totalPaginas,
+                    Itens = resposta
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
+
 }
+

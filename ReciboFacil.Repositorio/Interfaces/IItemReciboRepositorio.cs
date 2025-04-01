@@ -1,5 +1,7 @@
 using ReciboFacil.Dominio.Entidades;
 
+namespace ReciboFacil.Repositorio
+{
     public interface IItemReciboRepositorio
     {
         Task<int> CadastrarAsync(ItemRecibo item);
@@ -8,3 +10,4 @@ using ReciboFacil.Dominio.Entidades;
         Task AtualizarAsync(ItemRecibo item);
         Task DeletarAsync(int id);
     }
+}

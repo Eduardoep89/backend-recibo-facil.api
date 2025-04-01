@@ -15,5 +15,8 @@ namespace ReciboFacil.Aplicacao
         Task<Produto> ObterPorIdAsync(int id);
         Task<List<Produto>> ListarTop10ProdutosAsync();
         Task<List<ProdutoPorCliente>> ListarProdutosPorClienteAsync(int clienteId);
+        Task<(List<Produto> produtos, int totalRegistros, int totalPaginas)> ListarPaginadoAsync(
+           int pagina = 1,
+           int itensPorPagina = 10);
     }
 }

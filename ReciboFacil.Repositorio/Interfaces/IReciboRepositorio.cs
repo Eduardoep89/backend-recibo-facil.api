@@ -1,5 +1,7 @@
 using ReciboFacil.Dominio.Entidades;
 
+namespace ReciboFacil.Repositorio
+{
     public interface IReciboRepositorio
     {
         Task<int> CadastrarAsync(Recibo recibo);
@@ -10,3 +12,4 @@ using ReciboFacil.Dominio.Entidades;
         Task<List<Recibo>> ListarPorClienteIdAsync(int clienteId);
         Task<List<Recibo>> ListarTop10RecibosAsync();
     }
+}

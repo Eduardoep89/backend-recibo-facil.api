@@ -1,4 +1,5 @@
 using ReciboFacil.Dominio.Entidades;
+using ReciboFacil.Repositorio;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -75,6 +76,12 @@ namespace ReciboFacil.Aplicacao
         public async Task<List<ProdutoPorCliente>> ListarProdutosPorClienteAsync(int clienteId)
         {
             return await _produtoRepositorio.ListarProdutosPorClienteAsync(clienteId);
+        }
+        public async Task<(List<Produto> produtos, int totalRegistros, int totalPaginas)> ListarPaginadoAsync(
+            int pagina = 1,
+            int itensPorPagina = 10)
+        {
+            return await _produtoRepositorio.ListarPaginadoAsync(pagina, itensPorPagina);
         }
     }
 }

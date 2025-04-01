@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using ReciboFacil.Dominio.Entidades;
 using System.Collections.Generic;
@@ -64,5 +65,40 @@ namespace ReciboFacil.Repositorio
                 .FromSqlRaw("EXEC ListarTop10Clientes")  // Chama a stored procedure
                 .ToListAsync();
         }
+        public async Task<(List<Cliente> clientes, int totalRegistros, int totalPaginas)> ListarPaginadoAsync(
+           int pagina = 1,
+           int itensPorPagina = 10)
+        {
+            // Parâmetros para a stored procedure
+            var paginaParam = new SqlParameter("@Pagina", pagina);
+            var itensPorPaginaParam = new SqlParameter("@ItensPorPagina", itensPorPagina);
+
+            var totalRegistrosParam = new SqlParameter
+            {
+                ParameterName = "@TotalRegistros",
+                SqlDbType = System.Data.SqlDbType.Int,
+                Direction = System.Data.ParameterDirection.Output
+            };
+
+            var totalPaginasParam = new SqlParameter
+            {
+                ParameterName = "@TotalPaginas",
+                SqlDbType = System.Data.SqlDbType.Int,
+                Direction = System.Data.ParameterDirection.Output
+            };
+
+            // Executar a stored procedure
+            var clientes = await _contexto.Clientes
+                .FromSqlRaw("EXEC sp_ListarClientesAtivosPaginados @Pagina, @ItensPorPagina, @TotalRegistros OUTPUT, @TotalPaginas OUTPUT",
+                    paginaParam, itensPorPaginaParam, totalRegistrosParam, totalPaginasParam)
+                .ToListAsync();
+
+            // Obter os valores de output
+            var totalRegistros = (int)totalRegistrosParam.Value;
+            var totalPaginas = (int)totalPaginasParam.Value;
+
+            return (clientes, totalRegistros, totalPaginas);
+        }
     }
 }
+
