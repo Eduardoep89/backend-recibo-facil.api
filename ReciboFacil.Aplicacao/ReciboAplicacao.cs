@@ -15,7 +15,6 @@ namespace ReciboFacil.Aplicacao
             _reciboRepositorio = reciboRepositorio;
         }
 
-        // Cadastrar um novo recibo
         public async Task<int> CadastrarAsync(Recibo reciboDTO)
         {
             if (reciboDTO == null)
@@ -25,8 +24,6 @@ namespace ReciboFacil.Aplicacao
 
             return await _reciboRepositorio.CadastrarAsync(reciboDTO);
         }
-
-        // Atualizar um recibo existente
         public async Task AtualizarAsync(Recibo reciboDTO)
         {
             if (reciboDTO == null)
@@ -37,7 +34,6 @@ namespace ReciboFacil.Aplicacao
             await _reciboRepositorio.AtualizarAsync(reciboDTO);
         }
 
-        // Deletar um recibo (soft delete)
         public async Task DeletarAsync(int reciboId)
         {
             await _reciboRepositorio.DeletarAsync(reciboId);

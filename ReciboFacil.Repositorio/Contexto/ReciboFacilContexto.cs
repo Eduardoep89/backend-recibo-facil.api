@@ -18,7 +18,6 @@ public class ReciboFacilContexto : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // Aplica as configurações de Cliente e Produto
         modelBuilder.ApplyConfiguration(new ClienteConfiguracoes());
         modelBuilder.ApplyConfiguration(new ProdutoConfiguracoes());
         modelBuilder.ApplyConfiguration(new ReciboConfiguracoes());
@@ -26,15 +25,15 @@ public class ReciboFacilContexto : DbContext
 
         // Configuração do relacionamento entre Cliente e Produto
         modelBuilder.Entity<Produto>()
-            .HasOne(p => p.Cliente)  // Cada Produto tem um Cliente
-            .WithMany(c => c.Produtos)  // Um Cliente pode ter vários Produtos
-            .HasForeignKey(p => p.ClienteId);  // A chave estrangeira em Produto é ClienteId
+            .HasOne(p => p.Cliente)
+            .WithMany(c => c.Produtos)
+            .HasForeignKey(p => p.ClienteId);
 
         // Configuração da entidade ProdutoPorCliente (resultado da função SQL)
         modelBuilder.Entity<ProdutoPorCliente>(entity =>
         {
-            entity.HasNoKey(); // Funções com valor de tabela não têm chave primária
-            entity.ToView("ListarProdutosPorCliente"); // Nome da função no banco de dados
+            entity.HasNoKey();
+            entity.ToView("ListarProdutosPorCliente");//FUNÇÃO CRIADA NO BANCO
 
             // Especifica a precisão e escala para a propriedade Preco
             entity.Property(p => p.Preco).HasPrecision(18, 2);
@@ -51,12 +50,12 @@ public class ReciboFacilContexto : DbContext
             entity.HasOne(ir => ir.Recibo)
                 .WithMany(r => r.Itens)
                 .HasForeignKey(ir => ir.ReciboId)
-                .OnDelete(DeleteBehavior.Restrict); // Evita ON DELETE CASCADE
+                .OnDelete(DeleteBehavior.Restrict); // EVITA ON DELETE CASCADE
 
             entity.HasOne(ir => ir.Produto)
                 .WithMany(p => p.Itens)
                 .HasForeignKey(ir => ir.ProdutoId)
-                .OnDelete(DeleteBehavior.Restrict); // Evita ON DELETE CASCADE
+                .OnDelete(DeleteBehavior.Restrict);
         });
     }
 }

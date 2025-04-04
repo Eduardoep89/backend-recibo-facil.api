@@ -13,8 +13,6 @@ namespace ReciboFacil.Repositorio
         Task<List<Cliente>> ListarTop10ClientesAsync();
         Task<Cliente> ObterPorIdAsync(int id);
         Task RestaurarAsync(int id);
-
-        // Novo método para paginação
         Task<(List<Cliente> clientes, int totalRegistros, int totalPaginas)> ListarPaginadoAsync(
             int pagina = 1,
             int itensPorPagina = 10);

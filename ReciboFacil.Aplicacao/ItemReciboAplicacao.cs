@@ -15,7 +15,6 @@ namespace ReciboFacil.Aplicacao
             _itemRepositorio = itemRepositorio;
         }
 
-        // Cadastrar um novo item de recibo
         public async Task<int> CadastrarAsync(ItemRecibo itemReciboDTO)
         {
             if (itemReciboDTO == null)
@@ -26,7 +25,6 @@ namespace ReciboFacil.Aplicacao
             return await _itemRepositorio.CadastrarAsync(itemReciboDTO);
         }
 
-        // Atualizar um item de recibo existente
         public async Task AtualizarAsync(ItemRecibo itemReciboDTO)
         {
             if (itemReciboDTO == null)
@@ -37,13 +35,11 @@ namespace ReciboFacil.Aplicacao
             await _itemRepositorio.AtualizarAsync(itemReciboDTO);
         }
 
-        // Deletar um item de recibo
         public async Task DeletarAsync(int itemReciboId)
         {
             await _itemRepositorio.DeletarAsync(itemReciboId);
         }
 
-        // Obter um item de recibo por ID
         public async Task<ItemRecibo> ObterPorIdAsync(int itemReciboId)
         {
             return await _itemRepositorio.ObterPorIdAsync(itemReciboId);
