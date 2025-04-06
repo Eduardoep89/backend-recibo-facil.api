@@ -121,7 +121,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>  //Habilita a interface UI do Swagger com configurações personalizadas:
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "ReciboFacil API v1"); //Habilita o middleware do Swagger para gerar a especificação OpenAPI.
-        c.RoutePrefix = string.Empty;
+        //c.RoutePrefix = string.Empty;
     });
 
     app.MapGet("/debug/config", () => Results.Json(new
