@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Azure.AI.OpenAI;
-using Azure;
+using Azure; //SDK da Microsoft
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Caching.Memory;
