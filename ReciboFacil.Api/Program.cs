@@ -1,7 +1,6 @@
 using System.Net.Http.Headers;
 using System.Text.Json.Serialization; // Adicionado para ReferenceHandler
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Memory;
 using Azure.AI.OpenAI;
 using ReciboFacil.Aplicacao;
 using ReciboFacil.Repositorio;
@@ -10,7 +9,15 @@ using ReciboFacil.Servicos.Interfaces;
 using Azure.Core.Pipeline;
 using System.Text.Json;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.OpenApi.Models; // Adicionado para JsonSerializerOptions
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.Cookies; // Adicionado para JsonSerializerOptions
+using ReciboFacil.Dominio.Entidades;
+using ReciboFacil.Repositorio.Interfaces;
+using ReciboFacil.Aplicacao.Interfaces;
+using ReciboFacil.Repositorio.Repositorios;
+using ReciboFacil.Aplicacao.Aplicacoes;
+using System.Data;
+using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,16 +30,22 @@ builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
 builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
 builder.Services.AddScoped<IReciboRepositorio, ReciboRepositorio>();
 builder.Services.AddScoped<IItemReciboRepositorio, ItemReciboRepositorio>();
+builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
 // Aplicação
 builder.Services.AddScoped<IClienteAplicacao, ClienteAplicacao>();
 builder.Services.AddScoped<IProdutoAplicacao, ProdutoAplicacao>();
 builder.Services.AddScoped<IReciboAplicacao, ReciboAplicacao>();
 builder.Services.AddScoped<IItemReciboAplicacao, ItemReciboAplicacao>();
+builder.Services.AddScoped<IUsuarioAplicacao, UsuarioAplicacao>();
 
 // Serviços
 builder.Services.AddMemoryCache();
-
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IDbConnection>(provider =>
+    new SqlConnection(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDistributedMemoryCache(); // Necessário para a sessão
+builder.Services.AddScoped<IAutenticacaoServico, AutenticacaoServico>();
 // Configuração da OpenAI (Versão Corrigida)
 builder.Services.AddSingleton<OpenAIClient>(provider =>
 {
@@ -110,6 +123,24 @@ builder.Services.AddSwaggerGen(c =>
         Scheme = "Bearer"
     });
 });
+// Autenticação por sessão 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Use Always em produção
+        options.Cookie.SameSite = SameSiteMode.Strict;
+        options.LoginPath = "/api/Account/Login";
+        options.LogoutPath = "/api/Account/Logout";
+        options.ExpireTimeSpan = TimeSpan.FromHours(2); // Tempo da sessão
+    });
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+    options.IdleTimeout = TimeSpan.FromHours(2);
+});
 
 var app = builder.Build();
 
@@ -133,13 +164,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseRouting(); // Adicionado explicitamente
-
-// CORS deve vir após UseRouting e antes de UseAuthorization
+app.UseRouting();
+app.UseSession();
 app.UseCors("ReactPolicy");
-
-app.UseAuthentication(); // Adicionado para garantir autenticação
-app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllers();
 

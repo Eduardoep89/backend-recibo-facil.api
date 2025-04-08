@@ -9,6 +9,7 @@
   <ItemGroup>
     <!-- Pacotes do ASP.NET Core -->
     <PackageReference Include="Azure.AI.OpenAI" Version="1.0.0-beta.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.12" />
     
     <!-- Entity Framework Core -->
